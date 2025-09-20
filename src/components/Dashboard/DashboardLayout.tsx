@@ -40,12 +40,16 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   };
 
   return (
-    <div className={`min-h-screen w-full ${theme === 'dark' ? 'bg-[#1E1F2E]' : 'bg-gray-50'}`}>
-      <DashboardHeader activeTab={activeTab} setActiveTab={setActiveTab} />
+    <div className={`min-h-screen w-full flex flex-col ${theme === 'dark' ? 'bg-[#1E1F2E]' : 'bg-gray-50'}`}>
+      <DashboardHeader 
+        activeTab={activeTab} 
+        setActiveTab={setActiveTab} 
+        onToggleSidebar={toggleSidebar}
+      />
 
       {/* Switch content based on activeTab */}
       {activeTab === 'Dashboard' && (
-        <div className="flex h-[calc(100vh-4rem)] relative">
+        <div className="flex flex-1 relative">
           <SidebarDrawer 
             onDeviceSelect={handleDeviceSelect}
             onHierarchySelect={handleHierarchySelect}
@@ -56,8 +60,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
             onToggle={toggleSidebar}
           />
           <div className={`flex-1 transition-all duration-300 ${
-            isSidebarOpen ? 'lg:ml-0' : 'lg:ml-0'
-          }`}>
+            isSidebarOpen ? 'lg:ml-64' : 'lg:ml-0'
+          } ${!isSidebarOpen ? 'lg:ml-0' : ''}`}>
             <DashboardContent 
               selectedDevice={selectedDevice} 
               selectedHierarchy={selectedHierarchy}
@@ -67,7 +71,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
       )}
       
       {activeTab === 'Devices' && (
-        <div className="flex h-[calc(100vh-4rem)] relative">
+        <div className="flex flex-1 relative">
           <SidebarDrawer 
             onDeviceSelect={handleDeviceSelect}
             onHierarchySelect={handleHierarchySelect}
@@ -77,15 +81,15 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
             onToggle={toggleSidebar}
           />
           <div className={`flex-1 transition-all duration-300 ${
-            isSidebarOpen ? 'lg:ml-0' : 'lg:ml-0'
-          }`}>
+            isSidebarOpen ? 'lg:ml-64' : 'lg:ml-0'
+          } ${!isSidebarOpen ? 'lg:ml-0' : ''}`}>
             <DevicesPage />
           </div>
         </div>
       )}
       
       {activeTab === 'Alarms' && (
-        <div className="flex h-[calc(100vh-4rem)] relative">
+        <div className="flex flex-1 relative">
           <SidebarDrawer 
             onDeviceSelect={handleDeviceSelect}
             onHierarchySelect={handleHierarchySelect}
@@ -95,8 +99,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
             onToggle={toggleSidebar}
           />
           <div className={`flex-1 transition-all duration-300 ${
-            isSidebarOpen ? 'lg:ml-0' : 'lg:ml-0'
-          }`}>
+            isSidebarOpen ? 'lg:ml-64' : 'lg:ml-0'
+          } ${!isSidebarOpen ? 'lg:ml-0' : ''}`}>
             <div className={`p-6 min-h-full ${theme === 'dark' ? 'bg-[#1E1F2E]' : 'bg-gray-50'}`}>
               <AlarmsTable />
             </div>

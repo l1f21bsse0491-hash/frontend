@@ -6,13 +6,13 @@ import { useTheme } from '../../hooks/useTheme';
 interface DashboardHeaderProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
-  onToggleSidebar?: () => void;
+  onToggleSidebar: () => void;
 }
 
 const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   activeTab,
   setActiveTab,
-  onToggleSidebar,
+  onToggleSidebar
 }) => {
   const { user } = useAuth();
   const { theme, toggleTheme } = useTheme();
@@ -32,11 +32,11 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
       {/* Left side: Logo + Navigation */}
       <div className="flex items-center gap-8">
         {/* Logo */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
           {onToggleSidebar && (
             <button
               onClick={onToggleSidebar}
-              className={`lg:hidden p-2 rounded-lg transition-colors ${
+              className={`p-2 rounded-lg transition-colors ${
                 theme === 'dark'
                   ? 'text-gray-400 hover:text-white hover:bg-gray-700'
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
@@ -45,6 +45,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
               <Menu className="h-5 w-5" />
             </button>
           )}
+          
           <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
             theme === 'dark' ? 'bg-white' : 'bg-[#1E1F2E]'
           }`}>

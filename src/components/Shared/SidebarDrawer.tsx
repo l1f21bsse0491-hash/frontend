@@ -342,16 +342,6 @@ const SidebarDrawer: React.FC<SidebarDrawerProps> = ({
   return (
     <>
       {/* Mobile Toggle Button */}
-      <button
-        onClick={onToggle}
-        className={`lg:hidden fixed top-20 left-4 z-50 p-2 rounded-lg shadow-lg transition-colors ${
-          theme === 'dark'
-            ? 'bg-[#2A2D47] text-white hover:bg-[#3A3D57]'
-            : 'bg-white text-gray-900 hover:bg-gray-100 border border-gray-200'
-        }`}
-      >
-        {isOpen ? <X size={20} /> : <Menu size={20} />}
-      </button>
 
       {/* Overlay for mobile */}
       {isOpen && (
@@ -363,7 +353,7 @@ const SidebarDrawer: React.FC<SidebarDrawerProps> = ({
 
       {/* Sidebar */}
       <div
-        className={`fixed lg:relative top-0 left-0 h-full z-50 transition-transform duration-300 ease-in-out ${
+        className={`fixed lg:relative top-0 left-0 h-screen z-50 transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         } ${
           theme === 'dark'
@@ -396,7 +386,7 @@ const SidebarDrawer: React.FC<SidebarDrawerProps> = ({
         <div className={`border-t ${
           theme === 'dark' ? 'border-[#2A2D47]' : 'border-gray-200'
         }`}>
-          <div className="h-[calc(100vh-10rem)] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
+          <div className="h-[calc(100vh-8rem)] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
             {renderCompanyHierarchy()}
           </div>
         </div>
